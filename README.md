@@ -142,11 +142,11 @@ SYMBOL Crossing Up/Down PRICE [size=SIZE] [lev=LEVERAGE] [EXCHANGE]
 1. В TradingView создайте алерт
 2. В настройках вебхука укажите URL:
    ```
-   https://ainol.xyz/webhook/tradingview?token=YOUR_SECRET_TOKEN
+   https://you_site.com/webhook/tradingview?token=YOUR_SECRET_TOKEN
    ```
    Где `YOUR_SECRET_TOKEN` - это значение из `.env` файла (`WEBHOOK_SECRET_TOKEN`)
-   
-   **Важно:** 
+
+   **Важно:**
    - Используйте HTTPS для продакшена
    - Токен должен совпадать с `WEBHOOK_SECRET_TOKEN` в `.env`
    - Если используете IP вместо домена:
@@ -163,24 +163,24 @@ SYMBOL Crossing Up/Down PRICE [size=SIZE] [lev=LEVERAGE] [EXCHANGE]
    }
    ```
 
-### Пример настройки для домена ainol.xyz:
+### Пример настройки для домена you_site.com:
 
 После запуска Docker контейнеров с Caddy, URL вебхука будет:
 
 **URL вебхука:**
 ```
-https://ainol.xyz/webhook/tradingview?token=ВАШ_СЕКРЕТНЫЙ_ТОКЕН
+https://you_site.com/webhook/tradingview?token=ВАШ_СЕКРЕТНЫЙ_ТОКЕН
 ```
 
 **Настройки в TradingView:**
-- URL: `https://ainol.xyz/webhook/tradingview?token=ВАШ_ТОКЕН`
+- URL: `https://you_site.com/webhook/tradingview?token=ВАШ_ТОКЕН`
 - Метод: `POST`
 - Content-Type: `application/json`
 - Тело: `{"message": "{{message}}"}` или просто текст алерта
 
 **Важно:**
 - Caddy автоматически настроит HTTPS через Let's Encrypt
-- Убедитесь, что домен `ainol.xyz` указывает на IP вашего VPS
+- Убедитесь, что домен `you_site.com` указывает на IP вашего VPS
 - Порты 80 и 443 должны быть открыты в firewall
 
 ## Расчет стоп-лосс и тейк-профит
@@ -231,4 +231,3 @@ https://ainol.xyz/webhook/tradingview?token=ВАШ_СЕКРЕТНЫЙ_ТОКЕН
 ## Лицензия
 
 MIT
-
