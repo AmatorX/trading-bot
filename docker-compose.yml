@@ -1,0 +1,32 @@
+services:
+  trading-bot:
+    build: .
+    container_name: trading_bot_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    # Нам не надо торчать портом наружу, достаточно внутри сети Docker
+    expose:
+      - "8000"
+    volumes:
+      - ./logs:/app/logs # Для сохранения логов
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  caddy:
+    image: caddy:2
+    container_name: caddy_reverse_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - trading-bot
+
+volumes:
+  caddy_data:
+  caddy_config:

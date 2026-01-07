@@ -1,0 +1,5 @@
+ainol.xyz {
+    encode gzip
+    reverse_proxy trading-bot:8000
+}
+
